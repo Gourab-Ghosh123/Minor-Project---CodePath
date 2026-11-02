@@ -23,7 +23,12 @@ const LoginPage = () => {
       await login(email, password);
       navigate(from, { replace: true });
     } catch (err) {
-      setError(err.response?.data?.message || 'Invalid email or password');
+      const msg =
+        err.response?.data?.message ||
+        (err.code === 'ERR_NETWORK' || err.message === 'Network Error'
+          ? 'Cannot reach backend server. If Render backend was asleep, please wait 30 seconds and try again.'
+          : 'Invalid email or password');
+      setError(msg);
     } finally {
       setLoading(false);
     }

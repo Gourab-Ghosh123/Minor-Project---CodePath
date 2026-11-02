@@ -51,7 +51,12 @@ const RegisterPage = () => {
       await register(name, email, password, domain);
       navigate('/dashboard', { replace: true });
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to register account');
+      const msg =
+        err.response?.data?.message ||
+        (err.code === 'ERR_NETWORK' || err.message === 'Network Error'
+          ? 'Cannot reach backend server. If Render backend was asleep, please wait 30 seconds and try again.'
+          : 'Failed to register account');
+      setError(msg);
     } finally {
       setLoading(false);
     }

@@ -19,6 +19,14 @@ app.use('/api/dashboard', require('./routes/dashboard.routes'));
 app.use('/api/progress', require('./routes/progress.routes'));
 app.use('/api/roadmap', require('./routes/roadmap.routes'));
 
+app.get('/', (req, res) => {
+  res.json({
+    status: 'online',
+    message: 'CodePath API Backend is running',
+    health: '/api/health'
+  });
+});
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'healthy', timestamp: new Date() });
 });

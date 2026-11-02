@@ -74,6 +74,29 @@ npm run dev
 
 ---
 
+## Deployment (Render.com + Vercel.com)
+
+### Backend Deployment (Render.com)
+- **Live URL**: `https://minor-project-codepath.onrender.com`
+- **Root Directory**: `server` (or run `node server/server.js` from root)
+- **Build Command**: `npm install`
+- **Start Command**: `node server/server.js`
+- **Environment Variables**:
+  - `PORT=5000` (Render assigns PORT automatically)
+  - `MONGO_URI`: Your MongoDB Atlas URI
+  - `JWT_SECRET`: Your production JWT secret
+
+### Frontend Deployment (Vercel.com)
+- **Framework**: Vite
+- **Root Directory**: `client` (or use repo root with `client/dist`)
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- **Environment Variables**:
+  - `VITE_API_URL`: `https://minor-project-codepath.onrender.com/api` (automatically defaults to this in production builds if omitted)
+- **SPA & API Rewrites**: Configured via `vercel.json` to handle client-side routing and reverse-proxy fallbacks.
+
+---
+
 ## API Summary
 
 | Method | Endpoint | Description |
